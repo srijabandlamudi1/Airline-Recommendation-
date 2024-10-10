@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Airline Recommendation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+
+	    </style>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		/* Style the body */
+		body {
+		  font-family: Arial;
+		  margin: 0;
+		}
+
+		/* Header/Logo Title */
+		.header {
+		  padding: 50px;
+		  text-align: center;
+		  background: #1abc9c;
+		  color: white;
+		  font-size: 30px;
+		}
+		.header img {
+		  float: left;
+		  width: 100px;
+		  height: 100px;
+		}
+
+		.footer {
+		  padding: 50px;
+		  text-align: center;
+		  background: #1abc9c;
+		  color: white;
+		  font-size: 30px;
+		}
+		.footer img {
+		  float: left;
+		  width: 100px;
+		  height: 100px;
+		}
+		.float-container {
+		    border: 3px solid #fff;
+		    padding: 20px;
+		}
+
+		.float-child {
+		    width: 50%;
+		    float: left;
+		    padding: 20px;
+		    border: 1px solid #1abc9c;
+		}
+		  body {
+  font-family: "Lato", sans-serif;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 200;
+  left: 0;
+  background-color: #1abc9c;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+	    </style>
+</head>
+<body>
+   <div class="header">
+
+	   <img src="/static/logo.jpg">
+	  <h1>Airline Recommendation System</h1>
+	</div>
+	<div class="sidenav">
+	  <a href="/createdatabase">Create Dataset</a>
+	  <a href="/RFPage">Random Forest</a>
+	  <a href="/CNNPage">CNN</a>
+	  <a href="/RecommendPage">Recommend</a> &nbsp;&nbsp;
+	  <form action="/logout" method="POST">
+	    <input type="submit"class="btn btn-success" value="Logout">
+
+       </form>
+	</div>
+	<div class="main">
+    <h2>Welcome, {{userData.first_name}}!!</h2>
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="text-align:center" class="text-danger">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+		<br>
+
+	    <form action="/Recommend1" method="POST">
+
+	           <table  align="center" style="width:40%">
+				  <tr>
+				    <th>Source</th>
+				    <th>
+				      <select name="src" id="src">
+				      <option value="Singapore">Singapore</option>
+				      <option value="New York">New York</option>
+						<option value="Tokyo">Tokyo</option>
+						</select>
+					<th>
+				  </tr>
+				  <tr>
+				    <th>Destination</th>
+				    <th>
+				      <select name="dest" id="dest">
+				      <option value="Bangkok">Bangkok</option>
+				      <option value="Tokyo">Tokyo</option>
+				      <option value="Hong Kong">Hong Kong</option>
+
+					  </select>
+					<th>
+				  </tr>
+
+				  <tr>
+				    <th>Seat Comfort</th>
+				    <th>
+				      <select name="seat" id="seat">
+				      <option value="5.0">5.0</option>
+				      <option value="4.0">4.0</option>
+				      <option value="3.0">3.0</option>
+				      <option value="2.0">2.0</option>
+				      <option value="1.0">1.0</option>
+				      <option value="0.0">0.0</option>
+					  </select>
+					<th>
+				  </tr>
+				  <tr>
+				    <th>Cabin Saff Service</th>
+				    <th>
+				      <select name="cabin" id="cabin">
+				      <option value="5.0">5.0</option>
+				      <option value="4.0">4.0</option>
+				      <option value="3.0">3.0</option>
+				      <option value="2.0">2.0</option>
+				      <option value="1.0">1.0</option>
+				      <option value="0.0">0.0</option>
+					  </select>
+					<th>
+				  </tr>
+				  <tr>
+				    <th>Food and Beverages</th>
+				    <th>
+				      <select name="food" id="food">
+				      <option value="5.0">5.0</option>
+				      <option value="4.0">4.0</option>
+				      <option value="3.0">3.0</option>
+				      <option value="2.0">2.0</option>
+				      <option value="1.0">1.0</option>
+				      <option value="0.0">0.0</option>
+					  </select>
+					<th>
+				  </tr>
+				  <tr>
+				    <th>Inflight Entertainment</th>
+				    <th>
+				      <select name="ent" id="ent">
+				      <option value="5.0">5.0</option>
+				      <option value="4.0">4.0</option>
+				      <option value="3.0">3.0</option>
+				      <option value="2.0">2.0</option>
+				      <option value="1.0">1.0</option>
+				      <option value="0.0">0.0</option>
+					  </select>
+					<th>
+				  </tr>
+				  <tr>
+				    <th>Ground Service</th>
+				    <th>
+				      <select name="ground" id="ground">
+				      <option value="5.0">5.0</option>
+				      <option value="4.0">4.0</option>
+				      <option value="3.0">3.0</option>
+				      <option value="2.0">2.0</option>
+				      <option value="1.0">1.0</option>
+				      <option value="0.0">0.0</option>
+					  </select>
+					<th>
+				  </tr>
+				  <tr>
+				    <th>Value for Money</th>
+				    <th>
+				      <select name="money" id="money">
+				      <option value="5.0">5.0</option>
+				      <option value="4.0">4.0</option>
+				      <option value="3.0">3.0</option>
+				      <option value="2.0">2.0</option>
+				      <option value="1.0">1.0</option>
+				      <option value="0.0">0.0</option>
+					  </select>
+					<th>
+				  </tr>
+				  <tr>
+					<th></th>
+					 <th><input type="submit"class="btn btn-success" value="Submit"><th>
+					 </tr>
+
+	</table>
+	<br>
+	<br>
+	<br>
+	{% if result %}
+	<table align="center" style="width:40%" bgcolor="#FFFFFF">
+	<tbody><tr>
+	    <th>Airlines Name</th>
+        <th>Recommend</th>
+
+        </tr>
+
+				<tr>
+			        <td> {{ result }}</td>
+			        <td> <input type="checkbox" checked><label> Recommend</label></td>
+
+			    </tr>
+		    {% for row in result1 %}
+				<tr>
+			        <td> {{ row}}</td>
+			        <td> <input type="checkbox"><label> Recommend</label></td>
+
+			    </tr>
+		    {% endfor %}
+    {% endif %}
+</tbody></table>
+
+
+
+ 	<div>
+	<div>
+	</div>
+ </body>
+</html>

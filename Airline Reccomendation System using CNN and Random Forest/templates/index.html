@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Airline Recommendation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+
+    </style>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	/* Style the body */
+	body {
+	  font-family: Arial;
+	  margin: 0;
+	}
+
+	/* Header/Logo Title */
+	.header {
+	  padding: 50px;
+	  text-align: center;
+	  background: #1abc9c;
+	  color: white;
+	  font-size: 30px;
+	}
+	.header img {
+	  float: left;
+	  width: 100px;
+	  height: 100px;
+	}
+
+	.footer {
+	  padding: 50px;
+	  text-align: center;
+	  background: #1abc9c;
+	  color: white;
+	  font-size: 30px;
+	}
+	.footer img {
+	  float: left;
+	  width: 100px;
+	  height: 100px;
+	}
+	.float-container {
+	    border: 3px solid #fff;
+	    padding: 20px;
+	}
+
+	.float-child {
+	    width: 50%;
+	    float: left;
+	    padding: 20px;
+	    border: 1px solid #1abc9c;
+	}
+
+</style>
+</head>
+<body>
+   <div class="header">
+
+	   <img src="/static/logo.jpg">
+	  <h1>Airline Recommendation System</h1>
+	</div>
+    <br>
+    <div class="float-container">
+    <div class = float-child>
+        <h3>Register here!</h3>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-danger">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/create" method="POST">
+            <p>First Name: <br> <input type="text" name="first_name"></p>
+            <p>Last Name: <br> <input type="text" name="last_name"></p>
+            <p>Email: <br> <input type="text" name="email"></p>
+            <p>Password: <br> <input type="password" name="password"></p>
+            <p>Confirm password: <br> <input type="password" name="c_password"></p>
+            <input type="submit" class="btn btn-success" value="Register">
+        </form>
+    </div>
+    <div class = float-child>
+        <h3>Login here!</h3>
+        <form action="/login" method="POST">
+            <p>Email: <br> <input type="text" name="email"></p>
+            <p>Password: <br> <input type="password" name="password"></p>
+            <input type="submit" class="btn btn-success" value="Login!">
+        </form>
+
+    </div>
+	</div>
+	<br>
+	<br>
+ 	<br>
+ 	<br>
+	<br>
+	<br>
+ 	<br>
+ 	<br>
+	<br>
+	<br>
+ 	<br>
+ 	<br>
+	<br>
+	<br>
+ 	<br>
+ 	<br>	<br>
+	<br>
+ 	<br>
+ 	<br>
+	<br>
+	<br>
+ 	<br>
+ 	<br>
+
+
+ <div class="footer">
+
+	   <img src="/static/logo.jpg">
+	  <h1>Airline Recommendation System</h1>
+	</div>
+
+</body>
+</html>
